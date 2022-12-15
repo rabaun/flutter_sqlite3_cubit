@@ -6,7 +6,7 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> json) => User(
         id: json['id'],
-        name: json['name'],
+        name: json['name'].toString(),
       );
 
   Map<String, dynamic> toMap() {

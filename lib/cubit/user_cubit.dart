@@ -19,17 +19,24 @@ class UserCubit extends Cubit<UserState> {
     });
   }
 
-  // void addUser(User user) {
-  //   if (user.name.isEmpty) {
-  //     emit(UserError(error: "Form is empty!"));
-  //     return;
-  //   }
-  //   emit(UserLoading());
-  //   repository.addUser(user: user).then((value) {
-  //     getUsers();
-  //   });
-  // }
-  //
+  void getDatabase() {
+    emit(UserLoading());
+    repository.getDatabase().then((users) {
+      emit(UserLoaded(users: users));
+    });
+  }
+
+  void updateCounterInDatabase(User user) {
+    if (user.name.isEmpty) {
+      emit(UserError(error: "Form is empty!"));
+      return;
+    }
+    emit(UserLoading());
+    repository.updateCounterInDatabase(user).then((value) {
+      getNameFromDatabase();
+    });
+  }
+
   // void updateUser(User user) {
   //   if (user.name.isEmpty) {
   //     emit(UserError(error: "Form is empty!"));

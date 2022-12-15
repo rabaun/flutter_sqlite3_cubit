@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
-
 import '../cubit/user_cubit.dart';
 import '../data/models/user.dart';
 
@@ -22,7 +21,7 @@ class _PageHomeState extends State<PageHome> {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<UserCubit>(context).getNameFromDatabase();
+    BlocProvider.of<UserCubit>(context).getDatabase();
     return Scaffold(
       appBar: AppBar(title: Center(child: Text("CRUD | SQF LITE | CUBIT"))),
       body: _userList(),
@@ -32,7 +31,7 @@ class _PageHomeState extends State<PageHome> {
 
   Widget _userList() {
     List<User> users = [];
-    BlocProvider.of<UserCubit>(context).getNameFromDatabase();
+    BlocProvider.of<UserCubit>(context).getDatabase();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -94,8 +93,8 @@ class _PageHomeState extends State<PageHome> {
           final message = textController.text;
           var user = User(id: selectedId, name: message);
           selectedId == null
-              ? BlocProvider.of<UserCubit>(context).getNameFromDatabase()
-              : BlocProvider.of<UserCubit>(context).getNameFromDatabase();
+              ? BlocProvider.of<UserCubit>(context).updateCounterInDatabase(user)
+              : BlocProvider.of<UserCubit>(context).getDatabase();
           selectedId = null;
           textController.clear();
         },
@@ -130,11 +129,11 @@ class _PageHomeState extends State<PageHome> {
           onLongPress: () {
             selectedId = null;
             textController.clear();
-            BlocProvider.of<UserCubit>(context).getNameFromDatabase();
+            BlocProvider.of<UserCubit>(context).getDatabase();
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text("${user.id} ${user.name}"),
+            child: Text("${user.id} ${user.name.toString()}"),
           ),
         ),
       ),

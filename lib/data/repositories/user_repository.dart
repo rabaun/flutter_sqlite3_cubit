@@ -8,13 +8,11 @@ class UserRepository {
 
   getNameFromDatabase() => userDao.getNameFromDatabase();
 
-  getAgeFromDatabase() => userDao.getAgeFromDatabase();
-
-  updateCounterInDatabase() => userDao.updateCounterInDatabase();
+  updateCounterInDatabase(User user) => userDao.updateCounterInDatabase(user);
 
   getDatabase() => userDao.getDatabase();
 
-  updateDatabase() => userDao.updateDatabase();
+  updateDatabase(User user) => userDao.updateDatabase(user);
 
   deleteDatabase() => userDao.deleteDatabase();
 }
