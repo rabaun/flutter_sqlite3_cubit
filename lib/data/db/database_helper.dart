@@ -26,7 +26,7 @@ class DatabaseHelper {
       // Open the database file
 
       db?.execute(
-          'CREATE TABLE IF NOT EXISTS list002 (id INTEGER PRIMARY KEY,name INTEGER NOT NULL);');
-      return sqlite3.open(dbFile.path);;
+          'CREATE TABLE IF NOT EXISTS list003 (id INTEGER PRIMARY KEY,name VARCHAR);');
+      return sqlite3.open(dbFile.path);
     }
 }

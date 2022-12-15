@@ -6,7 +6,7 @@ class UserDao {
 
   Future<List<User>> getCounterFromDatabase() async {
     final db = await dbHelper.database;
-    var users = db.select('SELECT id FROM list002;');
+    var users = db.select('SELECT id FROM list003;');
     List<User> userList =
         users.isNotEmpty ? users.map((e) => User.fromMap(e)).toList() : [];
     return userList;
@@ -14,7 +14,7 @@ class UserDao {
 
   Future<List<User>> getNameFromDatabase() async {
     final db = await dbHelper.database;
-    var users = db.select('SELECT name FROM list002;');
+    var users = db.select('SELECT name FROM list003;');
     List<User> userList =
         users.isNotEmpty ? users.map((e) => User.fromMap(e)).toList() : [];
     return userList;
@@ -23,13 +23,13 @@ class UserDao {
   Future<void> updateCounterInDatabase(User user) async {
     final db = await dbHelper.database;
     var users = db.execute(
-        'INSERT INTO list002 (name) VALUES (${user.name});');
+        'INSERT INTO list003 (name) VALUES ("${user.name}");');
     return users;
   }
 
   Future<List<User>> getDatabase() async {
     final db = await dbHelper.database;
-    var maps = db.select('SELECT * FROM list002;');
+    var maps = db.select('SELECT * FROM list003;');
     List<User> userList =
         maps.isNotEmpty ? maps.map((e) => User.fromMap(e)).toList() : [];
     return userList;
@@ -37,11 +37,11 @@ class UserDao {
 
   void updateDatabase(User user) async {
     final db = await dbHelper.database;
-    db.execute('UPDATE list002 SET name = name+1 WHERE id = ${user.id};');
+    db.execute('UPDATE list003 SET name = name+1 WHERE id = ${user.id};');
   }
 
   void deleteDatabase() async {
     final db = await dbHelper.database;
-    db.execute('DELETE FROM list002;');
+    db.execute('DELETE FROM list003;');
   }
 }
